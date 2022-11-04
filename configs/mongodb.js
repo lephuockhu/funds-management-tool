@@ -12,7 +12,6 @@ const connectionString = [
 	"/",
 	process.env.DATABASE_NAME,
 ].join("");
-console.log("connectionString :>> ", connectionString);
 
 var options = {
 	readPreference: "secondaryPreferred", // https://docs.mongodb.com/manual/core/read-preference/#secondaryPreferred
