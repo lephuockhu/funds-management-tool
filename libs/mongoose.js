@@ -5,7 +5,12 @@ class MyModel {
 
 	async find(model_name, where = {}, fields = "", order = {}, limit = 20, skip = 0) {
 		try {
-			let rows = await this.db[model_name].find(where, fields).skip(skip).sort(order).limit(limit);
+			let rows = await this.db[model_name]
+				.find(where, fields)
+				.skip(skip)
+				.sort(order)
+				.limit(limit)
+				.lean();
 
 			return rows ? rows : null;
 		} catch (e) {

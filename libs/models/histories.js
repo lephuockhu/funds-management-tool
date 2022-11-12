@@ -1,5 +1,5 @@
-import { Schema as _Schema, model } from "mongoose";
-let Schema = _Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
 // create a schema
 let objSchema = new Schema(
@@ -16,7 +16,4 @@ let objSchema = new Schema(
 	{ timestamps: true }
 );
 
-//Create a model using it
-const histories = model("histories", objSchema, "histories"); // model name, schema name, collection name
-
-export default histories;
+module.exports = mongoose.models['histories'] ? mongoose.model("histories", undefined, "histories") : mongoose.model("histories", objSchema, "histories");
