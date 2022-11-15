@@ -33,7 +33,7 @@ const DisplayRows = ({ history, users, setUsers, setEditUserId, setEditUserForm 
     };
 
     return (
-        <tr data-testid="display-rows" id={history.id} className={`data-row bg-white dark:bg-dark whitespace-nowrap hover:cursor-default hover:bg-blue-light dark:hover:bg-blue-dark hover:text-white ${history?.isChecked ? 'bg-gray-100 dark:bg-gray-800' : null}`}>
+        <tr data-testid="display-rows" id={history._id} className={`data-row bg-white dark:bg-dark whitespace-nowrap hover:cursor-default hover:bg-blue-light dark:hover:bg-blue-dark hover:text-white ${history?.isChecked ? 'bg-gray-100 dark:bg-gray-800' : null}`}>
             <td className="px-6 py-2 whitespace-nowrap text-center">
                 <input 
                     type="checkbox" 
@@ -44,9 +44,14 @@ const DisplayRows = ({ history, users, setUsers, setEditUserId, setEditUserForm 
                     value={history.name}
                 />
             </td>
-            <td className="px-6 py-2 whitespace-nowrap text-left">{history.name}</td>
-            <td className="px-6 py-2 whitespace-nowrap text-left">{history.email}</td>
-            <td className="px-6 py-2 whitespace-nowrap text-left">{history.role}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.coin_name}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.feauture_type}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.stoploss_usdt}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.entry_price}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.target_price}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.stoploss_price}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.leverage}</td>
+            <td className="px-6 py-2 whitespace-nowrap text-left">{history.extra_info}</td>
             <td className="px-6 py-2 whitespace-nowrap text-center">
                 <button 
                     type="button" 
@@ -60,7 +65,7 @@ const DisplayRows = ({ history, users, setUsers, setEditUserId, setEditUserForm 
                     type="button" 
                     title="Delete" 
                     className="btn p-2 ml-2 text-red-500 rounded" 
-                    onClick={() => handleUserDelete(history.id)} 
+                    onClick={() => handleUserDelete(history._id)} 
                 >
                     <FaTrash />
                 </button>

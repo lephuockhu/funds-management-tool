@@ -3,13 +3,13 @@ import React from 'react'
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-const Pagination = ({ filteredUsers, itemPerPage, currentPage,  setCurrentPage }) => {
+const Pagination = ({ historiesTotal, itemPerPage, currentPage,  setCurrentPage }) => {
 
     //  Array of numbers containing the number of pages.
     var pages = [];
 
     //  Calculate the number of pages.
-    for(let i=1; i<=Math.ceil(filteredUsers.length/itemPerPage); i++) {
+    for(let i=1; i<=Math.ceil(historiesTotal/itemPerPage); i++) {
         pages.push(i);
     };
 
@@ -50,7 +50,7 @@ const Pagination = ({ filteredUsers, itemPerPage, currentPage,  setCurrentPage }
 
     //  paginate to the last page.
     const handleLastBtn = () => {
-        setCurrentPage(Math.ceil(filteredUsers.length/itemPerPage));
+        setCurrentPage(Math.ceil(historiesTotal/itemPerPage));
     };
 
     return (

@@ -1,9 +1,14 @@
 import models from "../libs/models/index";
 import base from "../utils/base";
+import React from 'react';
 
 import { DisplayRows, Pagination } from "../components";
 
 export default function Home({ histories }) {
+  const [historiesTotal, setHistoriesTotal] = React.useState(histories.length);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [itemPerPage] = React.useState(10);
+
 	return (
 		<div className="relative min-h-screen min-w-screen bg-background dark:bg-background-dark dark:text-white transition-all ease-out text-gray text-center flex justify-center items-center overflow-hidden">
 			<div className="h-full sm:h-auto w-full sm:w-auto mt-0 sm:mt-4 px-2 sm:px-8 text-sm md:text-md">
@@ -26,10 +31,22 @@ export default function Home({ histories }) {
 											Name
 										</th>
 										<th scope="col" className="px-6 py-2 text-left">
-											Email
+											Type
 										</th>
 										<th scope="col" className="px-6 py-2 text-left">
-											Role
+											Entry price
+										</th>
+										<th scope="col" className="px-6 py-2 text-left">
+											SL
+										</th>
+										<th scope="col" className="px-6 py-2 text-left">
+											TP
+										</th>
+										<th scope="col" className="px-6 py-2 text-left">
+											Leverage
+										</th>
+										<th scope="col" className="px-6 py-2 text-left">
+											Extra info
 										</th>
 										<th scope="col" className="px-6 py-2 text-center">
 											Action
@@ -66,11 +83,12 @@ export default function Home({ histories }) {
 					className={`${
 						histories.length !== 0 ? "flex" : "invisible"
 					}  justify-center items-center py-2 md:py-6`}>
-					{/* <Pagination
-						itemPerPage={10}
-						currentPage={1}
-						setCurrentPage={1}
-					/> */}
+					<Pagination
+            historiesTotal={historiesTotal}
+						itemPerPage={itemPerPage}
+						currentPage={currentPage}
+						setCurrentPage={setCurrentPage}
+					/>
 				</div>
 			</div>
 		</div>
