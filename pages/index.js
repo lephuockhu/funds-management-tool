@@ -1,6 +1,8 @@
 import models from "../libs/models/index";
 import base from "../utils/base";
 
+import { DisplayRows, Pagination } from "../components";
+
 export default function Home({ histories }) {
 	return (
 		<div className="relative min-h-screen min-w-screen bg-background dark:bg-background-dark dark:text-white transition-all ease-out text-gray text-center flex justify-center items-center overflow-hidden">
@@ -36,27 +38,13 @@ export default function Home({ histories }) {
 								</thead>
 								<tbody className="relative text-md divide-y-4 divide-transparent">
 									{ histories && histories.length > 0 ? (
-										currentItems.map((user, index) => (
-											<Fragment key={index}>
-												{editUserId === user.id ? (
-													<EditableRow
-														key={index + 20}
-														user={editUserForm}
-														editUserForm={editUserForm}
-														setEditUserForm={setEditUserForm}
-														setEditUserId={setEditUserId}
-													/>
-												) : (
-													<DisplayRows
+										histories.map((history, index) => (
+											<>
+												<DisplayRows
 														key={index + 10}
-														user={user}
-														users={users}
-														setUsers={setUsers}
-														setEditUserId={setEditUserId}
-														setEditUserForm={setEditUserForm}
+														history={history}
 													/>
-												)}
-											</Fragment>
+											</>
 										))
 									) : (
 										<tr className="text-center w-full text-lg text-indigo-500">
@@ -76,14 +64,13 @@ export default function Home({ histories }) {
 
 				<div
 					className={`${
-						users.length !== 0 ? "flex" : "invisible"
+						histories.length !== 0 ? "flex" : "invisible"
 					}  justify-center items-center py-2 md:py-6`}>
-					<Pagination
-						filteredUsers={filteredUsers}
-						itemPerPage={itemPerPage}
-						currentPage={currentPage}
-						setCurrentPage={setCurrentPage}
-					/>
+					{/* <Pagination
+						itemPerPage={10}
+						currentPage={1}
+						setCurrentPage={1}
+					/> */}
 				</div>
 			</div>
 		</div>
