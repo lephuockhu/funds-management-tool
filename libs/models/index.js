@@ -1,16 +1,24 @@
-const fs = require("fs");
+var fs = require("fs");
+var path = require("path");
+var mongoose = require("../../configs/mongodb");
+// import all schema file in this dir, except index.js
+var db = {};
 
-let dbs = {};
-
-fs.readdirSync("./libs/models").forEach(function (fileName) {
-	if (fileName.indexOf(".js") !== 0 && fileName !== "index.js") {
-		var model = require(`./${fileName}`);
-		dbs[model.modelName] = model;
-	}
-});
+fs.readdirSync(path.join("libs/models"))
+	.filter(function (file) {
+		return file.indexOf(".js") !== 0 && file !== "index.js";
+	})
+	.forEach(function (file) {
+		var model = require("../models/" + file);
+		db[model.modelName] = model;
+	});
 
 //load model default
-import my_model from "../mongoose";
-var models = new my_model(dbs);
+var my_model = require("../mongoose");
 
-export default models;
+var model = new my_model(db);
+
+//load model custom
+model["custom"] = {};
+
+module.exports = model;

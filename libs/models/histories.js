@@ -16,4 +16,4 @@ let objSchema = new Schema(
 	{ timestamps: true }
 );
 
-module.exports = mongoose.models['histories'] ? mongoose.model("histories", undefined, "histories") : mongoose.model("histories", objSchema, "histories");
+module.exports = mongoose.models.histories || mongoose.model("histories", objSchema, "histories");
